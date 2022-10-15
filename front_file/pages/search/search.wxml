@@ -1,0 +1,25 @@
+<cu-custom  bgColor="bg-white" isBack="true" ><view slot="content">搜索发现</view></cu-custom>
+<view style="width: 100%; height: auto;" class="cu-bar search bg-white">
+<view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input bindinput="record" type="text" value="{{searchtext}}" placeholder="搜索图片、文章、视频" confirm-type="search"></input>
+    </view>
+    <view bindtap="search" style="width: 16%; height: auto; margin-right:22rpx ;" class="action" >
+      <button  class="cu-btn bg-mauve shadow-blur round ">搜索</button>
+    </view>
+  </view>
+<view  style="height:20px; width: 92% ;margin: auto;margin-top: 10px;box-sizing: border-box; display: flex;justify-content:space-between;"   >
+<view style=" font-size: large; font-weight: 900; "   >搜索记录</view>
+<view  bindtap="delete" style="width: 10%;height: 100%;" >
+<image style="height: 100%;width:20px;" src="../../icon/删除.png"/>
+</view>
+</view>
+<view style=" color: #808080; width: 98%; margin: auto; display: flex;flex-wrap: wrap; margin-top: 5px;  height: auto;"    >
+<view bindtap="fill_search" data-index="{{index}}" wx:for="{{searchlist}}" wx:key="index" style=" margin: 0px 3%; margin-top: 10px; height:30px;width: auto; display: flex;   justify-content: start;  box-sizing: border-box;" >
+<view  style=" box-sizing: border-box; display: flex; padding: 5px 10px; border-radius: 5px;  justify-content:center;align-items: center; background-color: #f1f1f1;  "  >{{item}}</view>
+<view wx:if="{{deleted}}" bindtap="delete__" data-index="{{index}}" style="height: 30px;width: 30px ;display: flex; justify-content: center;align-items: center;" >
+<image style="height: 65%; width: 65%;" src="../../icon/line_round_delete.png"/>
+</view>
+
+</view>
+</view>

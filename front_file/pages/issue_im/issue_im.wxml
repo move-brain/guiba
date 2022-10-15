@@ -1,0 +1,23 @@
+<cu-custom  bgColor="bg-white" isBack="true" ><view slot="content">评论{{name}}</view></cu-custom>
+<view   class="cu-form-group ">
+		<textarea maxlength="400" placeholder-style="font-size:4vmin"  bindinput="text"  	show-confirm-bar="true" style="height: 20vmin; font-size: 4vmin;" placeholder="来吧，尽情发挥吧...."></textarea>
+	</view>
+  <view wx:if="{{!isselectimage}}" style=" box-sizing: border-box; margin-top: 14vmin; display: flex; justify-content: space-around; height: auto; width:100%;" >
+  <view  bindtap="ChooseImage"  style="height: 20vmin; border-radius: 8px; width: 20%;display: flex; justify-content: center; align-items: center; background-color: #f1f1f1;"  >
+<image  style="width: 95%; height: 95%;"  src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5r6tc1yrcqIozGebgGGULExEZQ7EnczOSeUM2liEybQ5.xud1jBkIqOKVJIK.tAqCqOFTgurdVegySTU6oJljaA!/b&bo=yADIAAAAAAADByI!&rf=viewer_4"/>
+</view>
+</view>
+<view  bindtap="ViewImage" data-url="{{imagelist[index]}}"wx:for="{{imagelist}}" wx:key="index" style="position: relative;  box-sizing: border-box;margin-left: 2.5vmin; width: 95%;height: auto;"   >
+<image bindload="com_image" style="height: {{imageslwh.imageheight}}px;  width: {{imageslwh.imagewith}}px;"  src="{{item}}"></image>
+<view style="position: absolute;top: 0px;left: {{imageslwh.imagewith-29}}px;" class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+
+
+</view>
+
+<view  style="display: flex;justify-content: center;align-items: center; margin-top: 10vmin; "  class="grid col-5 padding-sm">
+  <view style="display: flex; align-items: center;justify-content: center;" class="margin-tb-sm text-center" >
+    <button 	   bindtap="open" class="cu-btn round bg-mauve shadow">发表</button>
+  </view>
+</view>

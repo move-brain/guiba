@@ -1,0 +1,7 @@
+{
+    "usingComponents": {},
+    "navigationStyle": "custom",
+    "onReachBottomDistance": 80,
+    "backgroundTextStyle": "dark"
+
+}

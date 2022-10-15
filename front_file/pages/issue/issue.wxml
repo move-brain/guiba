@@ -1,0 +1,107 @@
+<cu-custom  bgColor="bg-white" isBack="true" ><view slot="content">发布帖子</view></cu-custom>
+<view style="display: flex; width: 100%; box-sizing: border-box; margin-top: 15px;  background-color: #ffffff;height: auto;align-items: center;"  >
+<image style="height: 70rpx; width: 70rpx; box-sizing: border-box; margin-left: 10px;" src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5sZVfXwe8Uj1T9heDOw5KHwMRUnj5rfg5qed3qF4M.824lSnczHQNl3Kx3ea5CImUks8zCg7DxdksP2ymzueE.U!/b&bo=AAHIAAAAAAADB.s!&rf=viewer_4"/>
+<view style="box-sizing: border-box; margin-left: 7px; font-size: 18px; font-weight: bold;"   >桂林电子科技大学</view>
+</view>
+<view style="box-sizing: border-box;margin: auto; width: 92%; height: 3rpx; background-color: #f1f1ff;"></view>
+<view  style="width: 92%; height:30px;margin: auto; display: flex;align-items: center; margin-top: 5px; " >
+<view  style=" font-size: 15px; font-weight: bolder; box-sizing: border-box; margin-right: 5px;" >版块分区</view>
+<view bindtap="showModal" data-target="RadioModal"  style="width:25px;height: 25px;box-sizing: border-box; margin-right: 10px; ">
+<image style="height: 100% ;width: 100%;" src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5m9U*NeyP*g5d16QjXsXyoajfimfzlvcFl2qKe5pMZHcF7kEQdN2aZZxU*l97yhlGUQcRuy6Q3HDDdwPLgb6jls!/b&bo=yADIAAAAAAADByI!&rf=viewer_4" ></image>
+</view>
+<view bindlongpress="deleteselect" data-index="{{index}}" style= " font-size: small; border-radius: 8px; display: flex; justify-content: center;align-items: center; box-sizing: border-box;height: 25px; margin: 0px 5px; width: auto; padding: 5px 8px;background-color: #f1f1f1;" wx:for="{{select}}" wx:key="index" >
+{{item.text}}
+</view>
+</view>
+<view style="box-sizing: border-box;margin: auto; width: 92%; height: 3rpx; background-color: #f1f1ff;"></view>
+<view aria-role="dialog" aria-modal="true" class="fadeIn" wx:if="{{iosDialog1}}">
+        <view class="weui-mask"></view>
+        <view class="weui-dialog">
+            <view class="weui-dialog__hd"><strong class="weui-dialog__title">版块</strong></view>
+            <view class="weui-dialog__bd">是否删除此版块</view>
+            <view class="weui-dialog__ft">
+                <view aria-role="button" data-type="false" class="weui-dialog__btn weui-dialog__btn_default" bindtap="close">关闭</view>
+                <view aria-role="button" data-type="true" class="weui-dialog__btn weui-dialog__btn_primary" bindtap="close">确定</view>
+            </view>
+        </view>
+    </view>
+    <view style="width: 92%; height: 40px; margin: auto;" >
+		<input bindinput="headline" maxlength="20" style="height: 100%; font-weight: bolder;font-size: 15px;"  placeholder="请输入标题,5-20个字"></input>
+	</view>
+  <view class="cu-modal {{modalName=='RadioModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <checkbox-group  bindchange="checkchange" class="block">
+      <view class="cu-list menu text-left">
+        <view   class="cu-item" wx:for="{{selected}}" wx:key="index">
+        <image style="height:25px;width: 25px;box-sizing: border-box;margin-right: 10px;" src="{{item.image}}"/>
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex-sub">{{item.text}}</view>
+            <checkbox value="{{index}}"  disabled="{{item.disabled}}"  color="#9c26b0" class="round"></checkbox>
+          </label>
+        </view>
+      </view>
+    </checkbox-group>
+  </view>
+</view>
+  <view style="box-sizing: border-box;margin: auto; width: 92%; height: 3rpx; background-color: #f1f1ff;"></view>
+<view   class="cu-form-group ">
+		<textarea maxlength="400"   bindinput="text" 	show-confirm-bar="true" auto-height="true" placeholder="来吧，尽情发挥吧...."></textarea>
+	</view>
+
+    <view wx:if="{{!isselectimage&&!isselectvideo}}" style=" box-sizing: border-box; margin-top: 100rpx; display: flex; justify-content: space-around; height: auto; width:100%;">
+<view  bindtap="ChooseImage"  style="height: {{width/10}}px; border-radius: 8px; width: 10%;display: flex; justify-content: center; align-items: center; background-color: #f1f1f1;"  >
+<image  style="width: 95%; height: 95%;"  src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5r6tc1yrcqIozGebgGGULExEZQ7EnczOSeUM2liEybQ5.xud1jBkIqOKVJIK.tAqCqOFTgurdVegySTU6oJljaA!/mnull&bo=yADIAAAAAAADByI!&rf=photolist&t=5"/>
+</view>
+<view bindtap="Choosevideo" style="height: {{width/10}}px; border-radius: 8px; width: 10%;display: flex; justify-content: center; align-items: center; background-color: #f1f1f1;"  >
+<image  style="width: 93%; height: 93%;"  src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5sOv*lJQ1UNHkPzyOR4Dbl2EK8AvdoroHTUbnBWiorrNtDPdoSpG19gu6PKOFVLWafM5wZgMcAypbLuGsFqJDmA!/b&bo=zgDIAAAAAAADByQ!&rf=viewer_4"/>
+ </view>
+    </view>
+<!-- <view  bindtap="Chooseaudio"   style="height: {{width/10}}px; border-radius: 8px; width: 10%;display: flex; justify-content: center; align-items: center; background-color: #f1f1f1;"  >
+<image  style="width: 93%; height: 93%;"  src="../../icon/音频.png"/>
+</view> -->
+<!-- </view> --> 
+<!-- <view wx:if="{{isselectaudio}}" style="width: 100%; height: auto; margin-left: 15px;"  >
+    <audio controls="true"  name="音频"  src="{{src}}" id=""  ></audio>
+</view> -->
+<view style="width: 100%;height: auto;" wx:if="{{isselectimage}}" >
+<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			上传图片
+		</view>
+		<view class="action">
+			{{imagelist.length}}/9
+		</view>
+	</view>
+<view  class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imagelist}}" wx:key="index" bindtap="ViewImage" data-url="{{imagelist[index]}}">
+				<image src='{{imagelist[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imagelist.length<9}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+</view>
+			<view wx:if="{{isselectvideo}}" style="width: 100%; height: auto;display: flex; margin: 0 auto;  box-sizing: border-box; margin-top: 20px; " >
+				<video  wx:for="{{videolist}}"  wx:key="index" style="height: {{width/4}}px; width: 25%; box-sizing: border-box;  margin: 0 5%; border-radius: 10px; "  controls="false"  initial-time="0.01" src='{{videolist[index]}}'>
+                    <view class="cu-tag" catchtap="Deveo" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+                </video>
+              
+                <view bindtap="Choosevideo" style="height: {{width/4}}px; width: 25%; box-sizing: border-box;  margin: 0 4%; border-radius: 10px; "  class="solids"  wx:if="{{videolist.length<3}}">
+                <view style="height: 100%; width: 100%; display: flex; justify-content: center;align-items: center; " >
+				<image style="height: 50%; width: 50%;" src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5r6tc1yrcqIozGebgGGULEweS59tD*w*7FiG7JCwqtHQ5yrRMKhPfwpt0XWwq7cyzdHxD6lFONO1i5IyFV461hE!/mnull&bo=yADIAAAAAAADByI!&rf=photolist&t=5"/>
+            </view>
+			</view>
+          
+			</view>
+<view  style="display: flex;justify-content: center;align-items: center; margin-top: 20px; "  class="grid col-5 padding-sm">
+  <view style="display: flex; align-items: center;justify-content: center;" class="margin-tb-sm text-center" >
+    <button bindtap="open" class="cu-btn round bg-mauve shadow">发布</button>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+/* pages/select/select.wxss */
+
+page {
+    background-color: #f1f1f1;
+}
+
+.sear_num {
+    height: 10vmin;
+    width: 100vmin;
+    top: 0px;
+    position: relative;
+    animation: first 5s;
+    animation-fill-mode: forwards
+}
+
+@keyframes first {
+    from {
+        top: 0px;
+    }
+    to {
+        top: -10vmin;
+        height: 0px;
+    }
+}

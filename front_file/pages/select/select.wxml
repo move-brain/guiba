@@ -1,0 +1,53 @@
+<cu-custom  bgColor="bg-white" isBack="true" ><view slot="content">搜索结果</view></cu-custom>
+<view style="display: flex;justify-content: center;align-items: center; background-color: white;color: #bbb;" class="sear_num" >
+共为你找到{{posts.length}}条相关帖子
+</view>
+<view wx:if="{{posts.lenght==0}}" style="width: 100%;height: 100vmax;background-color: white;justify-content: center;align-items: center;"  >
+<image mode="aspectFill" style="height: 100vmin;width: 100vmin;" src="../../icon/数据内容空.png"/>
+</view>
+
+<view  wx:for="{{posts}}" wx:key="index" data-id="{{item.id}}" bindtap="look_posts" style="height: auto; display: flex;flex-direction: column; border-radius: 5px; width:95%; padding: 2.5%; background-color: white; box-sizing: border-box; margin:3vmin auto; " >
+<view  style="width: 100%; display: flex;align-items: flex-start;justify-content: flex-start;align-items: center; height: 11.5vmin; box-sizing: border-box; margin:20rpx 0 ; ">
+<image mode="aspectFill" style="height: 85rpx; width: 85rpx; border-radius: 100px;" src="{{item.head}}"/>
+<view style="box-sizing: border-box;margin:0 20rpx; height: 85rpx;display: flex;flex-direction: column;justify-content: space-around"  >
+<view  style="font-size: 4.5vmin;box-sizing: border-box; width:45vmin;"   >{{item.name}}</view>
+<view style="font-size: 20rpx; color: E1E1E1;"  >{{item.post_time}}</view>
+</view>
+</view>
+<view style=" line-height:140%; font-weight: bold;height:40rpx; font-size: 36rpx; display: flex;align-items: center;box-sizing: border-box;margin-bottom: 1vmin; "  >{{item.post_title}}</view>
+<view  style=" word-wrap: break-word;line-height:140%; display: -webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp:3; overflow: hidden; box-sizing: border-box;height: auto; width:100%; margin-bottom: 10px; " >
+{{item.post_text}}
+</view>
+<view wx:if="{{item.type=='url_image'}}" style="width: 100%; height: auto;"  >
+<view wx:if="{{item.images.length==1}}"  style=" display: flex; box-sizing: border-box; margin-bottom: 10px; " >
+    <image bindload="animage" catchtap="lookimage" wx:if="{{item.images[0]}}" style=" border-radius: 20px; width: {{imagelwh[index].width}}px;height: {{imagelwh[index].height}}px;" src="{{item.images[0]}}" mode="aspectFill" data-index="{{index}}" data-index_image="0"  ></image>
+</view>
+<view style="  position:relative; margin-bottom: 10px; box-sizing: border-box; width: 100%;height:{{winwidth/3.5}}px ; display: flex; flex-wrap: wrap;   " wx:if="{{item.images.length>1&&item.images.length<=3}}">
+<view  style=" box-sizing: border-box; margin:0px {{index_image==1? winwidth/48:0 }}px; display: flex;justify-content: center;align-items: center;  width: {{winwidth/3.5}}px;height: {{winwidth/3.5}}px;justify-content: space-around; "  wx:for="{{item.images}}" wx:key="index_image" wx:for-index="index_image"  >
+<image  catchtap="lookimage" wx:if="{{item}}" data-index="{{index}}" data-index_image="{{index_image}}" style=" border-radius:10px; width: 100%;height: 100%;" mode="aspectFill" src="{{item}}"/>
+</view>
+</view>
+<view style="  position:relative; margin-bottom: 10px; box-sizing: border-box; width: 100%;height:{{winwidth/3.5}}px ; display: flex; flex-wrap: wrap;   " wx:if="{{item.images.length>3}}">
+    <view   style=" display: flex;justify-content: center;align-items: center; background-color: #333; position:absolute;opacity: 0.5; height: {{winwidth/15}}px;width: {{winwidth/15}}px; bottom: 8px;right: 8px;color:white ;font-size: {{winwidth/35}}px; border-radius: 100%;" >+{{item.length}}</view>
+<view  style=" position:relative; box-sizing: border-box; margin:0px {{index_image==1? winwidth/48:0 }}px; display: flex;justify-content: center;align-items: center;  width: {{winwidth/3.5}}px;height: {{winwidth/3.5}}px;justify-content: space-around; "  wx:for="{{item.images}}" wx:for-item="image" wx:key="index_image"  wx:for-index="index_image"  >
+<image catchtap="lookimage" wx:if="{{index_image<3&&image}}" data-index="{{index}}" data-index_image="{{index_image}}" style=" border-radius:10px; width: 100%;height: 100%;" mode="aspectFill" src="{{image}}"/>
+<view wx:if="{{index_image==2}}"  style=" display: flex;justify-content: center;align-items: center; background-color: #333; position:absolute;opacity: 0.5; height: {{winwidth/15}}px;width: {{winwidth/15}}px; bottom: 8px;right: 8px;color:white ;font-size: {{winwidth/35}}px; border-radius: 100%;" >+ {{item.images.length-3}}</view>
+</view>
+</view>
+</view>
+<view wx:if="{{item.type=='url_videos'}}" style="width: 100%; height: auto;"  >
+<view  wx:if="{{item.images.length==1}}"  style=" display: flex; box-sizing: border-box; margin-bottom: 10px; " >
+    <video wx:if="{{item.images[0]}}" 	show-mute-btn="true" catchtap="lookimage" custom-cache="{{false}}" bindloadedmetadata="anvideo"  style=" border-radius: 20px;width:{{videolwh[index].width}};height:{{videolwh[index].height}}px; " object-fit="cover" src="{{item.images[0]}}" data-index="{{index}}" data-index_image="0" ></video>
+</view>
+<view  style="position:relative; margin-bottom: 10px; box-sizing: border-box; width: 100%;height:{{winwidth/3.5}}px ; display: flex; flex-wrap: wrap;   " wx:if="{{item.images.length>1&&item.images.length<=3}}">
+<view  style=" box-sizing: border-box; margin:0px {{index_image==1? winwidth/48:0 }}px; display: flex;justify-content: center;align-items: center;  width: {{winwidth/3.5}}px;height: {{winwidth/3.5}}px;justify-content: space-around; "  wx:for="{{item.images}}" wx:key="index_image" wx:for-index="index_image"  >
+<video wx:if="{{item}}" catchtap="lookimage" custom-cache="{{false}}" data-index="{{index}}" data-index_image="{{index_image}}" style=" border-radius:10px; width: 100%;height: 100%;" object-fit="cover" src="{{item}}"></video>
+</view>
+</view>
+</view>
+<view catchtap style="height: 50rpx; width: 100%;display: flex;align-items:center;justify-content: flex-end;" >
+<view style="display: flex;align-items: center;"  >收藏 {{item.collect_num}}</view>
+<view  style="box-sizing: border-box;margin-left: 3vmin;display: flex;align-items: center;"    >赞 {{item.like_num}}</view>
+</view>
+</view>
+<view  style="width: 100%;height: 15vmin;"  ></view>

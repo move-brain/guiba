@@ -1,0 +1,15 @@
+<view style="position: fixed;bottom: 0px;width: 100%;margin-bottom:0px;background-color: #ffffff;color: #ababab;"  class="cu-bar tabbar margin-bottom-xl bg-white">
+    <view  bindtap="select" data-url="../index/index" class="action">
+      <view st class="cuIcon-{{select==0? homefill:home}}"></view> 首页
+    </view>
+    <view bindtap="selected" data-url="../issue/issue" class="action  text-gray  add-action">
+      <button  style="background-color: #9c26b0; color: #ffffff;" class="cu-btn cuIcon-add  bg-mauve  shadow"></button>
+      发布
+    </view>
+    <view   bindtap="select" data-url="../my/my"  class="action text-gray">
+        <view class="cuIcon-{{select==1?myfill:my}}">
+          <view wx:if="{{mes_num}}" class="cu-tag badge"></view>
+      </view>
+      我的
+    </view>
+  </view>

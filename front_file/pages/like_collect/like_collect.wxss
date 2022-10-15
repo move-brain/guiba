@@ -1,0 +1,5 @@
+/* pages/like_collect/like_collect.wxss */
+
+page {
+    background-color: #f1f1f1;
+}

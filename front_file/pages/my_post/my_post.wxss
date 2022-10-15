@@ -1,0 +1,5 @@
+/* pages/my_post/my_post.wxss */
+
+page {
+    background-color: #f1f1f1;
+}

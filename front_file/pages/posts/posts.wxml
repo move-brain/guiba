@@ -1,0 +1,89 @@
+<cu-custom  bgColor="bg-white"  isBack="true"  ><view slot="content">{{post.name}}的帖子</view></cu-custom>
+
+<progress  wx:if="{{press}}" percent="{{percent}}" activeColor="#9c26b0" duration="30" backgroundColor="#ffffff" active="true"  stroke-width="4" bindactiveend="press"  ></progress>
+<view bindtap="is_brmain" data-is_brmain="main" style="width: 100%;height: auto;" > 
+<view  style="width: 95%; display: flex;align-items: flex-start;justify-content: flex-start;align-items: center; height: 70rpx; box-sizing: border-box; margin:4vmin 2.5vmin 2vmin 2.5vmin; "  >
+<image catchtap="look_user" mode="aspectFill" style="height: 10vmin; width: 10vmin; border-radius: 100px;" src="{{post.head}}"/>
+<view style="box-sizing: border-box;margin:0 10px; height:80%;display: flex;flex-direction: column;justify-content: space-around"  >
+<view  style="box-sizing: border-box;"   >{{post.name}}</view>
+<view style=" font-size: 22rpx; color: #d1d1d1;"  >{{post.post_time}}</view>
+</view>
+</view>
+<view style=" word-wrap: break-word; width: 95%; margin: 0px 2.5vmin 3vmin 2.5vmin; font-weight: bold;height:auto; font-size: 18px; display: flex;align-items: center;box-sizing: border-box; " >{{post.post_title}}</view>
+<view  style=" margin: auto; word-wrap: break-word;line-height:140%; overflow: hidden; box-sizing: border-box;height: auto; width:95%; " >
+{{post.post_text}}
+</view>
+<view wx:if="{{post.type=='url_image'}}" style="width: 100%; height: auto;" >
+<image mode="aspectFill" bindload="images" data-index="{{index}}" catchtap="lookimage_post" wx:for="{{post.images}}"  wx:key="index" style="width: {{imageslwh[index].imagewith}}px;height: {{imageslwh[index].imageheight}}px;box-sizing: border-box;margin: auto 2.5vmin; margin-top: 3vmin; margin-bottom: 0px; border-radius: 10px;" src="{{item}}"    /> 
+</view>
+<view  wx:if="{{post.type=='url_videos'}}" style="width: 100%; height: auto; " >
+    <video bindloadedmetadata="videos" 	muted="true"		autoplay data-index="{{index}}" catchtap="lookvideo" wx:for="{{post.images}}"  wx:key="index" style="width: {{imageslwh[index].imagewith}}px;height: {{imageslwh[index].imageheight}}px;box-sizing: border-box;margin: auto 2.5vmin; margin-top: 3vmin; margin-bottom: 0px; border-radius: 10px;" src="{{item}}"    ></video> 
+</view>
+<view style="width: 100%; height: 16vmin; display: flex; justify-content: space-around; box-sizing: border-box;margin-top: 3vmin; margin-bottom: 4vmin;"  >
+   <button open-type="share" size="mini" style="margin: 0px; background-color: white;"  >  <image   style="height: 8vmin; width: 8vmin;"  src="../../icon/转发.png"  /> </button>
+<view  style="display: flex; justify-content: flex-start; height: auto;flex-direction: column; align-items: center;"   >
+    <image  bindtap="collect" data-islike="true" style="height: 8vmin; width: 8vmin;" wx:if="{{post.is_collect}}" src="../../icon/_收藏2小.png"  />
+<image   bindtap="collect" data-islike="false" style="height: 8vmin; width: 8vmin;" wx:if="{{!post.is_collect}}" src="../../icon/_收藏2小 (1).png"  />
+<view  style="width: 8vmin;height: 8vmin; box-sizing: border-box;display: flex;justify-content: center;align-items: flex-end; margin-top: 0.3vmin; font-size: 4vmin;"  >{{post.collect_num}}</view>
+</view>
+<view style="display: flex; justify-content: flex-start; height: auto;flex-direction: column; align-items: center;"  >
+<image  bindtap="like" data-islike="true" style="height: 8vmin; width: 8vmin;" wx:if="{{post.is_like}}" src="../../icon/点赞 (2).png"  />
+<image   bindtap="like" data-islike="false" style="height: 8vmin; width: 8vmin;" wx:if="{{!post.is_like}}" src="../../icon/点赞 (3).png"  />
+<view  style="width: 8vmin;height: 8vmin; box-sizing: border-box;display: flex;justify-content: center;align-items: flex-end; margin-top: 0.3vmin;font-size: 4vmin; "  >{{post.like_num}}</view>
+</view>
+
+</view>
+</view>
+<view style="width: 95%; height: 4rpx; box-sizing: border-box; margin: auto;background-color: #eee; display: flex; align-items: center;" ></view>
+<view  style="width: 95%;box-sizing: border-box; margin: auto; margin-top: 3vmin; display: flex; justify-content: space-between; " >
+<view style="font-weight: 600;" >最新回复</view>
+<view  style="display: flex; width: 30vmin;align-items: center; color: #aaa; "   >
+<view style="box-sizing: border-box; margin-right: 2vmin;" class="action">
+              <switch  bindchange="order" ></switch>
+            </view>
+            是否倒序
+            </view>
+</view>
+<view style="width: 95%;  height: auto; box-sizing: border-box;margin: auto; margin-top: 1vmin;  ; "   >
+<view bindtap="is_brmain" data-is_brmain="br" data-index="{{index}}" wx:for="{{main_com}}" wx:key="index" style="width: 100%; height: auto; box-sizing: border-box; margin-top: 2vmin; border-bottom:solid 4rpx #f1f1f1;padding-bottom: 3vmin;" >
+  <view  style="width:100%; display: flex;align-items: flex-start;justify-content: flex-start;align-items: center; height: 10vmin; box-sizing: border-box; "  >
+<image mode="aspectFill" catchtap="look_user" style="height: 10vmin; width: 10vmin; border-radius: 100px;" src="{{item.head}}"/>
+<view style="box-sizing: border-box;margin:0 2.5vmin; height:80%;display: flex;flex-direction: column;justify-content: space-around"  >
+<view  style="box-sizing: border-box;"   >{{item.name}}</view>
+<view style=" font-size: 22rpx; color: #d1d1d1;"  >{{item.com_time}}</view>
+</view>
+<view wx:if="{{isuser}}" catchtap="de_com" data-index="{{index}}" style="box-sizing: border-box;position: relative;right: -55vmin; font-weight: 900;color:#9c26b0;"  >
+删除
+</view>
+</view>
+<view style="width: 82.5vmin; box-sizing: border-box; margin-top: 2vmin; margin-left: 12.5vmin; word-wrap: break-word;line-height:140%; " >
+{{item.text}}
+</view>
+<view wx:if="{{item.image.length==1}}"  style=" display: flex; box-sizing: border-box; margin-bottom: 3vmin; margin-left: 12.5vmin;margin-top: 2vmin; " >
+    <image bindload="main_image" catchtap="lookimage_com" wx:if="{{item.image[0]}}" style=" border-radius: 8px; width: {{imagelwh[index].width}}px;height: {{imagelwh[index].height}}px;" src="{{item.image[0]}}" mode="aspectFill" data-index="{{index}}"  ></image>
+</view>
+<view  bindtap="br_com" data-index="{{index}}" style="width: 82.5vmin;  margin-left: 12.5vmin; height: auto;margin-top: 2vmin; border-radius: 12rpx; box-sizing: border-box;  background-color: #f1f1f1f1;  "  >
+<view  style="box-sizing: border-box; padding: 1vmin 2vmin 0vmin 2vmin; height: auto;"  wx:for="{{br_com}}"  wx:for-index="com_index"  wx:key="com_index"wx:for-item="com"  wx:if="{{com.main_id==item.id&&com_index<=br_comdata[index].index}}" >
+<view style="word-wrap: break-word;display: flex; justify-content: flex-start; align-items: center; height: auto;"  wx:if="{{com.br_id==0}}" >
+<view style="font-weight: 550;  height:auto ; color: #bbb; display: -webkit-box;overflow: hidden;text-overflow: ellipsis;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 3;">
+{{com.name}}: <text  style="font-weight: 500; color: #000;">{{com.text}}</text>
+</view>
+</view> 
+<view  style="display: flex;justify-content: flex-start;align-items: center;" wx:if="{{com.br_id>0}}" data-num="1"  >
+<view style="font-weight: 550; color: #bbb;" >
+{{com.name}}: <text style="color: #000; font-weight: 500;"  >回复 </text>{{com.reply_name}}: <text  style="color: #000; font-weight: 500;"  >{{com.text}}</text>
+</view>
+</view>
+</view>
+<view wx:if="{{br_comdata[index].is_more}}"   style=" box-sizing: border-box;margin-left: 2vmin; font-size: 4vmin; font-weight: 600; color: #0081ff;"  >查看更多评论</view>
+</view>
+</view>
+</view>
+<view  style="width: 100%;height: 10vmin; display: flex;justify-content: center;align-items: center;   box-sizing: border-box;margin-top: 10vmin;"  >没有更多评论了哦</view>
+<view style="height: 20vmin;width: 100%;"  ></view>
+<view  style="height: 15vmin; width: 100%; position: fixed;bottom: {{jp?'2.5vmin':'0px'}}; background-color: white; box-sizing: border-box;border-top: 3rpx solid; border-color: #f1f1f1;display: flex;justify-content: flex-start;align-items: center;	"	>
+  <input maxlength="30" value="{{text}}" placeholder-style="font-size:4vmin" style="background-color: #f1f1f1; height: 10vmin;box-sizing: border-box; width: 75vmin; border-radius: 10px;margin-left: 7vmin;padding:2vmin 0px 2vmin 5vmin;" name='remark' bindinput="text"	bindblur="blur"  placeholder='对{{reply_name}}评论'	bindfocus="focus" confirm-type="done"adjust-position="false" 		cursor-spacing="0"hold-keyboard="true"		bindconfirm='issue' hold-keyboard="true" ></input>
+  <image bindtap="issueimage" style="height: 10vmin;width: 10vmin; box-sizing: border-box;margin:auto 5vmin" src="http://m.qpic.cn/psc?/V50Fs1Xr3RvV6z1kISRj26VmXM3qPEMP/ruAMsa53pVQWN7FLK88i5j7uW4ttgTrQUc5wYV.cUybWS.e6aD3eRh1IjVGYHEVcqZDszAOJvXdm5wvp*b8ULuaFqYECcp7Obnq1OH*c5L0!/mnull&bo=yADIAAAAAAADByI!&rf=photolist&t=5"/>
+</view>
+
+

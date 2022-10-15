@@ -1,0 +1,9 @@
+{
+    "usingComponents": {},
+    "enablePullDownRefresh": true,
+    "backgroundColorBottom": "dark",
+    "homeButton": true,
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#f1f1f1",
+    "navigationBarTitleText": "我的帖子"
+}

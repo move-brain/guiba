@@ -1,0 +1,7 @@
+{
+    "usingComponents": {},
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 80,
+    "backgroundTextStyle": "dark",
+    "navigationBarTitleText": "修改信息"
+}
